@@ -1,0 +1,45 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Employee System
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Talent Employees
+      </h1>
+
+      {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "/index"
+      }) }}
+
+      <h2 class="govuk-heading-m">Choose Action</h2>
+
+      <p>Choose from one of the actions below.</p>
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Create Project"
+          }) }}
+
+          {{ govukButton({
+            text: "View Projects"
+          }) }}
+
+        </div>  
+ 
+      
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

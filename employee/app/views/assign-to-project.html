@@ -11,6 +11,11 @@
 
 {% block content %}
 
+{{ govukBackLink({
+        text: "Back",
+        href: "/talent-employee"
+      }) }}
+
 <h2 class="govuk-heading-m">Assign an employee to a project</h2>
 
 {% if errormessage %} 

@@ -55,9 +55,10 @@ SELECT department, emp_id, emp_name FROM Employee;
 
 -- USE CASE 4 - Gross Pay
 CREATE VIEW `Gross Pay` AS
-SELECT emp_id, emp_name, salary AS 'Gross pay' FROM Employee LEFT OUTER JOIN Sales_Employee USING (emp_id) WHERE commission_rate IS NULL
+SELECT emp_id, emp_name, salary FROM Employee LEFT OUTER JOIN Sales_Employee USING (emp_id) WHERE commission_rate IS NULL
 UNION
-SELECT emp_id, emp_name, salary + (commission_rate * total_sales_value) AS 'Gross Pay' FROM Sales_Employee JOIN Employee USING (emp_id);
+SELECT emp_id, emp_name, salary + (commission_rate * total_sales_value) FROM Sales_Employee JOIN Employee USING (emp_id);
+
 
 -- USE CASE 5 - See the employee with the highest sales total
 CREATE VIEW `Highest Sales` AS
@@ -95,7 +96,7 @@ CREATE VIEW `Projects with no employees` AS
 -- USE CASE 7 Part 2 / USE CASE 6 Part 3 - Show which employees are not assigned to any project
 CREATE VIEW `Employees with no projects` AS
     SELECT
-        emp_id AS 'Employee ID', emp_name AS 'Employee Name'
+        emp_id, emp_name, project_id
     FROM
         Technical_Employee
             JOIN
@@ -104,3 +105,5 @@ CREATE VIEW `Employees with no projects` AS
         Technical_Project USING (emp_id)
     WHERE
         project_ID IS NULL;
+        
+DROP VIEW `Employees with no projects`;

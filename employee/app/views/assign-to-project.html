@@ -1,0 +1,44 @@
+{% extends "layout.html" %} 
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block pageTitle %} 
+  Assign an employee to a project
+{% endblock %} 
+
+{% block content %}
+
+<h2 class="govuk-heading-m">Assign an employee to a project</h2>
+
+{% if errormessage %} 
+<div class="govuk-error-message">{{ errormessage }}</div> 
+{% endif %}
+
+<form class="form" action="/assign-to-project" method="post">
+{{ govukInput({
+  label: {
+    text: "Employee ID"
+  },
+  id: "emp_id",
+  name: "emp_id",
+  value: data["emp_id"] 
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Project ID"
+  },
+  id: "project_id",
+  name: "project_id",
+  value: data["project_id"] 
+}) }}
+
+{{ govukButton({
+  text: "Submit"
+}) }}
+</form>
+
+{% endblock %}

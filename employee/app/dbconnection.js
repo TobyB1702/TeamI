@@ -40,8 +40,32 @@ exports.addProject = async (project) => {
     return results.insertId; 
 }
 
+exports.getProjects = async () => {
+    let results = await db.query('SELECT project_id, project_name, emp_name FROM Project LEFT OUTER JOIN Technical_Project USING(project_id) LEFT OUTER JOIN Employee USING (emp_id);')
+    projects = {} 
+    for (index in results) {
+        if (projects[results[index].project_id]) {
+            projects[results[index].project_id].employees += ", " + results[index].emp_name;
+        } else {
+            projects[results[index].project_id] = {project_id: results[index].project_id, project_name: results[index].project_name, employees: results[index].emp_name}
+        }
+    }
+    var vals = Object.keys(projects).map(function(key) {
+        return projects[key];
+    });
+    return vals;
+}
+
+exports.getUnassignedEmployees = async () => {
+    let results = await db.query('SELECT * FROM Database_IT.`Employees with no projects`')
+    console.log(results)
+    return results;
+}
+
 exports.assignToProject = async (employeeID, projectID) => {
-    let results = await db.query('INSERT INTO Technical_Project VALUES (?, ?)', employeeID, projectID)
+    console.log(employeeID)
+    console.log(projectID)
+    let results = await db.query('INSERT INTO Technical_Project VALUES (?, ?);', [employeeID, projectID]);
     return results;
 }
 

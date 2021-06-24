@@ -1,0 +1,22 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Employee System
+{% endblock %}
+
+{% block content %}
+
+<h2 class="govuk-heading-m">List of Employees</h2>
+
+{% set employeerows = [] %}
+{% set employeerows = (employeerows.push([{ text: Employee.emp_id }, {text: Employee.emp_name}, {text: Employee.address},
+{text: Employee.nin}, {text: Employee.department}]), employeerows) %}
+
+{{govukTable({
+head: [ { text: "ID" },{ text: "Name" },{ text: "Address" },
+{ text: "NIN" },{ text: "Department" } ],
+rows: employeerows })
+}}
+
+{% endblock %}

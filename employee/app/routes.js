@@ -89,6 +89,7 @@ router.get('/hr-report', async (req, res) => {
 
 router.get('/list-employees', async (req, res) => { 
     res.render('list-employees', { employees : await dbconnection.getAllEmployees() } ) 
+});
 
 router.post('/assign-to-project', async (req, res) => {
     var data = req.body;
@@ -103,6 +104,7 @@ router.post('/assign-to-project', async (req, res) => {
     });
     if (id) res.redirect('list-projects');
 }
+
 });
 
 module.exports = router

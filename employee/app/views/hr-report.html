@@ -11,15 +11,14 @@
 
 
 
-{% if Employee.emp_id  > 0 %}
+{% if employees.length  > 0 %}
 {% set employeerows = [] %}
-{% for employee in employees | contains(namefilter) | sort(attribute='name') %}
-{% set employeerows = (employeerows.push([{ text: Employee.emp_id }, {text: Employee.emp_name},
-{text: Employee.salary}, {text: Employee.department}]), employeerows) %}
+{% for employee in employees %}
+{% set employeerows = (employeerows.push([{ text: employee.id }, {text: employee.name}, {text: employee.department}]), employeerows) %}
 {% endfor %}
 
 {{govukTable({
-head: [ { text: "ID" },{ text: "Name" },{ text: "Salary" },
+head: [ { text: "ID" },{ text: "Name" },
 { text: "Department" } ],
 rows: employeerows })
 }}

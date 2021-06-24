@@ -28,4 +28,12 @@ router.post('/add-project', async (req, res) => {
     res.render('add-project', {});
 });
 
+router.get('/hr-report', async (req, res) => { 
+    res.render('hr-report', { employees : await dbconnection.getEmployee() } ) 
+});
+
+router.get('/list-employees', async (req, res) => { 
+    res.render('list-employees', { employees : await dbconnection.getAllEmployees() } ) 
+});
+
 module.exports = router

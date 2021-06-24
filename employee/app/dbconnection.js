@@ -49,3 +49,12 @@ exports.getTechnicalEmployees = async () => {
     let results = await db.query('SELECT emp_id as id, name FROM Technical_Employee JOIN Employee USING(emp_id)')
     return results;
 }
+exports.getEmployee = async () => { 
+    let results = await db.query('SELECT emp_id as id, emp_name as name, salary, department FROM Database_IT.Employee ORDER BY department') 
+    return results;
+ }
+
+ exports.getAllEmployees = async () => { 
+    let results = await db.query('SELECT * FROM Database_IT.Employee') 
+    return results;
+ }

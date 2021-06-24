@@ -1,5 +1,3 @@
-
-
 const mysql = require('mysql');
 const dbconfig = require('./dbconfig.json');
 const util = require('util')
@@ -22,26 +20,32 @@ function wrapDB(dbconfig) {
 
 const db = wrapDB(dbconfig)
 
-
-router.get('/getEmployee', async (req, res) => {
-    const result = await db.query(
-        "Select * from Employee"
-    )
-    console.log(result)
-}
-)
-
-export const addBaseEmployee = async (baseEmployee) => {
+exports.addBaseEmployee = async (baseEmployee) => {
     let results = await db.query('INSERT INTO Employee SET ?', baseEmployee) 
     return results.insertId; 
 }
 
-export const addSalesEmployee = async (salesEmployee) => {
+exports.addSalesEmployee = async (salesEmployee) => {
     let results = await db.query('INSERT INTO Sales_Employee SET ?', salesEmployee) 
     return results.insertId; 
 }
 
-export const addTechnicalEmployee = async (technicalEmployee) => {
+exports.addTechnicalEmployee = async (technicalEmployee) => {
     let results = await db.query('INSERT INTO Technical_Employee SET ?', technicalEmployee) 
     return results.insertId; 
+}
+
+exports.addProject = async (project) => {
+    let results = await db.query('INSERT INTO Project SET ?', project) 
+    return results.insertId; 
+}
+
+exports.assignToProject = async (employeeID, projectID) => {
+    let results = await db.query('INSERT INTO Technical_Project VALUES (?, ?)', employeeID, projectID)
+    return results;
+}
+
+exports.getTechnicalEmployees = async () => {
+    let results = await db.query('SELECT emp_id as id, name FROM Technical_Employee JOIN Employee USING(emp_id)')
+    return results;
 }

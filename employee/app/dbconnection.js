@@ -7,7 +7,6 @@ function wrapDB(dbconfig) {
     const pool = mysql.createPool(dbconfig)
     return {
         query(sql, args) {
-            console.log("in query in wrapper")
             return util.promisify(pool.query)
                 .call(pool, sql, args)
         },
@@ -81,8 +80,6 @@ exports.getUnassignedEmployees = async () => {
 }
 
 exports.assignToProject = async (employeeID, projectID) => {
-    console.log(employeeID)
-    console.log(projectID)
     let results = await db.query('INSERT INTO Technical_Project VALUES (?, ?);', [employeeID, projectID]);
     return results;
 }

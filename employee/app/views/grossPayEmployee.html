@@ -1,0 +1,39 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  HELLO THERE
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Gross Pay For All Employees
+      </h1>{{releaseVersion | log }}
+
+      {% if employees and employees.length > 0 %}
+      {% set employeeRows = [] %}
+      {% for employee in employees %}
+      {% set employeeRows = (employeeRows.push([{ text: employee.emp_id },
+      {text: employee.emp_name }, {text: employee.salary}]), employeeRows) %}
+
+    {% endfor %}
+    {{govukTable({
+    head: [ { text: "Employee ID" },{ text: "Employee Name" },{ text: "Employee Gross Pay" }],
+    rows: employeeRows })
+  }}
+  {% else %}
+  There are no Employees.
+  {% endif %}
+
+
+    </div>
+      {{ govukButton({
+        text: "Back Home",
+        href: "/index"
+      }) }}
+  </div>
+
+{% endblock %}

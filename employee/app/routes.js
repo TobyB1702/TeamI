@@ -28,4 +28,16 @@ router.post('/add-project', async (req, res) => {
     res.render('add-project', {});
 });
 
+router.get('/highest-paid', async(req, res) => {
+    const result = await dbconnection.findEmployeeHighestPaid()
+    
+    console.log(result)
+    employee = {
+        name: result[0].emp_name,
+        total_sales_value: result[0].total_sales_value
+    }
+    console.log(employee);
+    res.render('highest-paid.html', {employee:[employee]})
+})
+
 module.exports = router

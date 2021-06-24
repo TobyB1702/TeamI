@@ -1,0 +1,39 @@
+{% extends "layout.html" %} 
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block pageTitle %} 
+  
+{% endblock %} 
+
+{% block content %}
+
+<h2 class="govuk-heading-m">Highest paid employees</h2>
+
+
+{% if employee and employee.length > 0 %} 
+<ul> 
+{% set employeeRows = [] %}
+{% for e in employee %}
+{% set employeeRows = (employeeRows.push([{ text: e.name },
+{text: e.total_sales_value }]), employeeRows) %}
+{% endfor %}
+</ul> 
+{{govukTable({
+head: [ { text: "Employee Name" },{ text: "Employee Total Sales" }],
+rows: employeeRows })
+}}
+{% else %} 
+There are no employees. 
+{% endif %}
+
+{% if errormessage %} 
+<div class="govuk-error-message">{{ errormessage }}</div> 
+{% endif %}
+
+
+
+{% endblock %}

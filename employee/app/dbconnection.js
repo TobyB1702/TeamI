@@ -21,7 +21,7 @@ function wrapDB(dbconfig) {
 const db = wrapDB(dbconfig)
 
 exports.getGrossPay = async () => {
-    let results = await db.query('select emp_id, emp_name, salary from Employee;') 
+    let results = await db.query('select * from `Gross Pay`;') 
     return results;
 }
 

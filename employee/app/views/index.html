@@ -1,0 +1,48 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Employee System
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Manage Employees
+      </h1>{{releaseVersion | log }}
+
+      <h2 class="govuk-heading-m">Choose Employee Type</h2>
+
+      <p>Choose your employee type from the selection below.</p>
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "HR Employee",
+            href: "/hr-employee"
+          }) }}
+
+          {{ govukButton({
+            text: "Talent Employee",
+            href: "/talent-employee"
+          }) }}
+          
+          {{ govukButton({
+            text: "Finance Employee",
+            href: "/finance-employee"
+          }) }}
+
+          {{ govukButton({
+            text: "Sales Employee",
+            href: "/sales-employee"
+          }) }}
+        </div> 
+      
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

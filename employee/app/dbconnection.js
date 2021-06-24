@@ -1,7 +1,6 @@
-const mysql = require('mysql');
-const dbconfig = require('./dbconfig.json');
+const mysql = require('mysql')
+const dbconfig = require('./dbconfig.json')
 const util = require('util')
-
 
 function wrapDB(dbconfig) {
     const pool = mysql.createPool(dbconfig)

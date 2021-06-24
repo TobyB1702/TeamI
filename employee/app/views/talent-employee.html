@@ -28,11 +28,23 @@
 
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Create Project"
+            text: "Create Project",
+            href: "/add-project"
           }) }}
 
           {{ govukButton({
-            text: "View Projects"
+            text: "View Projects",
+            href: "/list-projects"
+          }) }}
+
+          {{ govukButton({
+            text: "View employees without a project",
+            href: "/list-employees-not-assigned"
+          }) }}
+
+          {{ govukButton({
+            text: "Assign employee to a project",
+            href: "/assign-to-project"
           }) }}
 
         </div>  

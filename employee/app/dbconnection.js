@@ -36,6 +36,11 @@ exports.addSalesEmployee = async (salesEmployee) => {
     return results.insertId;
 }
 
+exports.findEmployeeHighestPaid = async() => {
+    let results = await db.query('Select * from `Highest Sales`') 
+    return results;
+}
+
 exports.addTechnicalEmployee = async (technicalEmployee) => {
     let results = await db.query('INSERT INTO Technical_Employee SET ?', technicalEmployee)
     return results.insertId;

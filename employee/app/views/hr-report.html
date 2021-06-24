@@ -1,0 +1,30 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Employee System
+{% endblock %}
+
+{% block content %}
+
+<h2 class="govuk-heading-m">List of Employees Per Department</h2>
+
+
+
+{% if Employee.emp_id  > 0 %}
+{% set employeerows = [] %}
+{% for employee in employees | contains(namefilter) | sort(attribute='name') %}
+{% set employeerows = (employeerows.push([{ text: Employee.emp_id }, {text: Employee.emp_name},
+{text: Employee.salary}, {text: Employee.department}]), employeerows) %}
+{% endfor %}
+
+{{govukTable({
+head: [ { text: "ID" },{ text: "Name" },{ text: "Salary" },
+{ text: "Department" } ],
+rows: employeerows })
+}}
+{% else %}
+There are no employees.
+{% endif %}
+
+{% endblock %}

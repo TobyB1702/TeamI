@@ -11,7 +11,12 @@
 
 {% block content %}
 
-<h2 class="govuk-heading-m">Highest paid employees</h2>
+      {{ govukBackLink({
+        text: "Back",
+        href: "/sales-employee"
+      }) }}
+
+<h2 class="govuk-heading-m">Sales employee with highest total sales/h2>
 
 
 {% if employee and employee.length > 0 %} 

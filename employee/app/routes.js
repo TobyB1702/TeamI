@@ -19,6 +19,10 @@ router.post('/add-employee', async (req, res) => {
     res.render('add-employee', {});
 });
 
+router.get('/grossPayEmployee', async (req, res) => {
+    res.render('grossPayEmployee', { employees: await dbconnection.getGrossPay() } )
+});
+
 router.post('/add-project', async (req, res) => {
     var data = req.body;
     project = {project_name: data.name}

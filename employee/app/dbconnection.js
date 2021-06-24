@@ -20,24 +20,30 @@ function wrapDB(dbconfig) {
 
 const db = wrapDB(dbconfig)
 
+exports.getGrossPay = async () => {
+    let results = await db.query('select emp_id, emp_name, salary from Employee;') 
+    return results;
+}
+
+
 exports.addBaseEmployee = async (baseEmployee) => {
-    let results = await db.query('INSERT INTO Employee SET ?', baseEmployee) 
-    return results.insertId; 
+    let results = await db.query('INSERT INTO Employee SET ?', baseEmployee)
+    return results.insertId;
 }
 
 exports.addSalesEmployee = async (salesEmployee) => {
-    let results = await db.query('INSERT INTO Sales_Employee SET ?', salesEmployee) 
-    return results.insertId; 
+    let results = await db.query('INSERT INTO Sales_Employee SET ?', salesEmployee)
+    return results.insertId;
 }
 
 exports.addTechnicalEmployee = async (technicalEmployee) => {
-    let results = await db.query('INSERT INTO Technical_Employee SET ?', technicalEmployee) 
-    return results.insertId; 
+    let results = await db.query('INSERT INTO Technical_Employee SET ?', technicalEmployee)
+    return results.insertId;
 }
 
 exports.addProject = async (project) => {
-    let results = await db.query('INSERT INTO Project SET ?', project) 
-    return results.insertId; 
+    let results = await db.query('INSERT INTO Project SET ?', project)
+    return results.insertId;
 }
 
 exports.assignToProject = async (employeeID, projectID) => {

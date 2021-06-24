@@ -17,7 +17,7 @@
 {% if employees and employees.length > 0 %} 
 {% set employeerows = [] %} 
 {% for employee in employees %}
-{% set employeerows = (employeerows.push([{ text: employee.emp_id }, {text: employee.emp_name}, {text: employee.project_name}, {html:
+{% set employeerows = (employeerows.push([{ text: employee.emp_id }, {text: employee.emp_name}, {html:
   '<form action="/assign-to-project/" method="get">
                     <button class="govuk-button" data-module="govuk-button" name="emp_id" value="'+employee.emp_id+'">
                         Assign
@@ -27,7 +27,7 @@
 }]), employeerows) %}
 {% endfor %} 
 {{govukTable({
-head: [ { text: "ID" },{ text: "Name" }, {text: "Assigned Project(s)"}, {text: ""}],
+head: [ { text: "ID" },{ text: "Name" }, {text: ""}],
 rows: employeerows })
 }}
 {% else %}

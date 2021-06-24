@@ -46,14 +46,21 @@ exports.getProjects = async () => {
     for (index in results) {
         if (projects[results[index].project_id]) {
             projects[results[index].project_id].employees += ", " + results[index].emp_name;
+            projects[results[index].project_id].num_employees += 1;
         } else {
-            projects[results[index].project_id] = {project_id: results[index].project_id, project_name: results[index].project_name, employees: results[index].emp_name}
+            projects[results[index].project_id] = {project_id: results[index].project_id, project_name: results[index].project_name, employees: results[index].emp_name, num_employees: 0}
         }
     }
     var vals = Object.keys(projects).map(function(key) {
         return projects[key];
     });
     return vals;
+}
+
+exports.getProjectsWithNoEmployees = async () => {
+    let results = await db.query('SELECT * FROM `Projects with no employees`;')
+    console.log(results);
+    return results;
 }
 
 exports.getUnassignedEmployees = async () => {

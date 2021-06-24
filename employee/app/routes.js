@@ -6,6 +6,10 @@ router.get('/list-projects', async (req, res) => {
     res.render('list-projects', { projects: await dbconnection.getProjects() })
 });
 
+router.get('/list-projects-no-employees', async (req, res) => {
+    res.render('list-projects-no-employees', { projects: await dbconnection.getProjectsWithNoEmployees() })
+});
+
 router.get('/list-employees-not-assigned', async (req, res) => {
     res.render('list-employees-not-assigned', { employees: await dbconnection.getUnassignedEmployees() })
 });

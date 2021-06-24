@@ -1,0 +1,7 @@
+{
+    "connectionLimit": 10, 
+    "host": "localhost",
+    "user": "TEAM_IT",
+    "password": "",
+    "database": "TEAM_IT"
+}

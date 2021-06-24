@@ -51,14 +51,14 @@ exports.addProject = async (project) => {
 }
 
 exports.getProjects = async () => {
-    let results = await db.query('SELECT project_id, project_name, emp_name FROM Project LEFT OUTER JOIN Technical_Project USING(project_id) LEFT OUTER JOIN Employee USING (emp_id);')
+    let results = await db.query('SELECT project_id, project_name, emp_name, emp_id FROM Project LEFT OUTER JOIN Technical_Project USING(project_id) LEFT OUTER JOIN Employee USING (emp_id);')
     projects = {} 
     for (index in results) {
         if (projects[results[index].project_id]) {
-            projects[results[index].project_id].employees += ", " + results[index].emp_name;
+            projects[results[index].project_id].employees += ", <br>" + results[index].emp_name + " (ID: "+results[index].emp_id+")";
             projects[results[index].project_id].num_employees += 1;
         } else {
-            projects[results[index].project_id] = {project_id: results[index].project_id, project_name: results[index].project_name, employees: results[index].emp_name, num_employees: 0}
+            projects[results[index].project_id] = {project_id: results[index].project_id, project_name: results[index].project_name, employees: results[index].emp_name ? (results[index].emp_name + " (ID: "+results[index].emp_id+")") : "", num_employees: 0}
         }
     }
     var vals = Object.keys(projects).map(function(key) {

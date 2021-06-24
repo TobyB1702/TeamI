@@ -47,13 +47,13 @@ router.post('/add-employee', async (req, res) => {
 
                 salesEmployee = { emp_id: id, commission_rate: data.commission_rate, total_sales_value: data.total_sales_value }
                 await dbconnection.addSalesEmployee(salesEmployee)
-                res.render('list-employees', {});
+                res.redirect('list-employees');
             }
         } else if (data.salesOrTechnical == 'technical') {
             id = await dbconnection.addBaseEmployee(baseEmployee)
             technicalEmployee = { emp_id: id, cv: data.cv, photo: data.photo }
             await dbconnection.addTechnicalEmployee(technicalEmployee)
-            res.render('list-employees', {});
+            res.redirect('list-employees');
         } 
 
     }

@@ -7,6 +7,12 @@
 
 {% block content %}
 
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "/talent-employee"
+      }) }}
+
 <h2 class="govuk-heading-m">List of Employees not assigned to a project</h2>
 
 {% if employees and employees.length > 0 %} 

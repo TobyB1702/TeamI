@@ -7,12 +7,18 @@
 
 {% block content %}
 
+
+      {{ govukBackLink({
+        text: "Back",
+        href: "/talent-employee"
+      }) }}
+
 <h2 class="govuk-heading-m">List of Projects with no emloyees assigned</h2>
 
 {% if projects and projects.length > 0 %} 
 {% set projectrows = [] %} 
 {% for project in projects %}
-{% set projectrows = (projectrows.push([{ text: project.project_id }, {text: project.project_name}, {text: project.employees}, {text: project.num_employees}, {html:
+{% set projectrows = (projectrows.push([{ text: project.project_id }, {text: project.project_name}, {text: project.employees}, {text: 0}, {html:
   '<form action="/assign-to-project/" method="get">
                     <button class="govuk-button" data-module="govuk-button" name="project_id" value="'+project.project_id+'">
                         Assign

@@ -48,12 +48,21 @@ router.post('/add-project', async (req, res) => {
     res.render('add-project', {});
 });
 
+
+router.get('/hr-report', async (req, res) => { 
+    res.render('hr-report', { employees : await dbconnection.getEmployee() } ) 
+});
+
+router.get('/list-employees', async (req, res) => { 
+    res.render('list-employees', { employees : await dbconnection.getAllEmployees() } ) 
+
 router.post('/assign-to-project', async (req, res) => {
     var data = req.body;
 
     id = await dbconnection.assignToProject(data.emp_id, data.project_id)
 
     res.redirect('list-projects');
+
 });
 
 module.exports = router
